@@ -3,16 +3,18 @@ class ApplicationController < ActionController::Base
 
   def current_user
     token = cookies.signed[:jwt]
-    begin
-      decoded_token = JWT.decode(
-        token,
-        Rails.application.credentials.fetch(:secret_key_base),
-        true,
-        { algorithm: "HS256" }
-      )
-      User.find_by(id: decoded_token[0]["user_id"])
-    rescue JWT::ExpiredSignature
-      nil
+    if token
+      begin
+        decoded_token = JWT.decode(
+          token,
+          Rails.application.credentials.fetch(:secret_key_base),
+          true,
+          { algorithm: "HS256" }
+        )
+        User.find_by(id: decoded_token[0]["user_id"])
+      rescue JWT::ExpiredSignature
+        nil
+      end
     end
   end
 

@@ -9,5 +9,7 @@ Rails.application.routes.draw do
   # root "posts#index"
   post "/users" => "users#create"
   post "/sessions" => "sessions#create"
-  get "/logout" => "sessions#destroy"
+  delete "/sessions" => "sessions#destroy"
+
+  get "/photos" => "photos#index"
 end

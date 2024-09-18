@@ -19,5 +19,6 @@ class SessionsController < ApplicationController
 
   def destroy
     cookies.delete(:jwt)
+    render json: { message: "Logged out successfully" }
   end
 end
