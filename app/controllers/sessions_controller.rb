@@ -16,4 +16,8 @@ class SessionsController < ApplicationController
       render json: {}, status: :unauthorized
     end
   end
+
+  def destroy
+    cookies.delete(:jwt)
+  end
 end
