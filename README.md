@@ -1,24 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Differences between cookie auth and localStorage auth:
 
-Things you may want to cover:
+- [config/initializers/cors.rb](/config/initializers/cors.rb): Add `credentials: true`
 
-* Ruby version
+- [config/routes.rb](/config/routes.rb): Add a `delete "/sessions"` route
 
-* System dependencies
+- [app/controllers/application_controller.rb](/app/controllers/application_controller.rb): Modify `current_user` method to use cookies
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- [app/controllers/sessions_controller.rb](/app/controllers/sessions_controller.rb): Modify `create` action to use cookies, add `destroy` action
